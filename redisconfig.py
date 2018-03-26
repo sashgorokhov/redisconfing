@@ -44,10 +44,11 @@ class RedisConfig:
             return value
         value = self._get_redis_setting(name)
         if value is not None:
+            value = value.decode()
             self._set_cache(name, value)
             return value
-        self._set_redis_setting(name, value)
-        self._set_cache(name, value)
+        self._set_redis_setting(name, default)
+        self._set_cache(name, default)
         return default
 
 
